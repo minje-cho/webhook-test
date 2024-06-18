@@ -1,45 +1,23 @@
-name: Notify Slack on PR
+name: Slack Notification
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, closed]
 
 jobs:
-  notify:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Send notification to Slack
+    - name: action-slack
+      uses: slackapi/slack-github-action@v1.26.0
+      with:
+        status: ${{ job.status }}
+        author_name: ${{ github.event.pull_request.user.login }}
+        text: |
+          *브랜치명:* ${{ github.event.pull_request.head.ref }} / *PR 작성자:* ${{ github.event.pull_request.user.login }}
+          *PR 제목:* ${{ github.event.pull_request.title }}
+          *PR 내용:* ${{ github.event.pull_request.body }}
+        if_mention: failure,cancelled
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      run: |
-        curl -X POST -H 'Content-type: application/json' --data '{
-          "text": "새로운 PR이 생성되었습니다.",
-          "attachments": [
-            {
-              "fallback": "GitHub Actions 알림",
-              "color": "#36a64f",
-              "author_name": "${{ github.actor }}",
-              "title": "PR 제목: ${{ github.event.pull_request.title }}",
-              "text": "PR 설명: ${{ github.event.pull_request.body }}",
-              "fields": [
-                {
-                  "title": "리포지토리",
-                  "value": "${{ github.repository }}",
-                  "short": true
-                },
-                {
-                  "title": "브랜치",
-                  "value": "${{ github.event.pull_request.head.ref }}",
-                  "short": true
-                },
-                {
-                  "title": "PR 번호",
-                  "value": "${{ github.event.pull_request.number }}",
-                  "short": true
-                }
-              ],
-              "ts": $(date +%s)
-            }
-          ]
-        }' $SLACK_WEBHOOK_URL
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+      if: always() # Pick up events even if the job fails or is canceled.
