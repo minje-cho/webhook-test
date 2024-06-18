@@ -1,23 +1,20 @@
-name: Notify Slack on PR
-
+name: Slack Notification
+ 
 on:
   pull_request:
-    types: [opened]
-
+    branches: [ "master", "develop" ]
+ 
 jobs:
-  notify:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Send notification to Slack
-      id: slack
-      uses: slackapi/slack-github-action@v1.26.0
+    - name: action-slack
+      uses: 8398a7/action-slack@v3
       with:
-        # This data can be any valid JSON from a previous step in the GitHub Action
-        payload: |
-          {
-            "key": "value",
-            "foo": "bar"
-          }
+        status: ${{ job.status }}
+        author_name: www-be
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        if_mention: failure,cancelled
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+      if: always() # Pick up events even if the job fails or is canceled.
