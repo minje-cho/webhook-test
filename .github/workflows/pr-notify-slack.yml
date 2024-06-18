@@ -9,12 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: action-slack
-      uses: 8398a7/action-slack@v3
+      uses: slackapi/slack-github-action@v1.26.0
       with:
         status: ${{ job.status }}
-        author_name: www-be
-        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-        if_mention: failure,cancelled
+        author_name: ${{ github.event.pull_request.user.login }}
+        text: |
+          *브랜치명:* ${{ github.event.pull_request.head.ref }} / *PR 작성자:* ${{ github.event.pull_request.user.login }}
+          *PR 제목:* ${{ github.event.pull_request.title }}
+          *PR 내용:* ${{ github.event.pull_request.body }}
+        fields: repo,message,commit,author,action,eventNam
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-      if: always() # Pick up events even if the job fails or is canceled.
