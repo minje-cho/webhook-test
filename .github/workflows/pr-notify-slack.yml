@@ -17,7 +17,6 @@ jobs:
           *브랜치명:* ${{ github.event.pull_request.head.ref }} / *PR 작성자:* ${{ github.event.pull_request.user.login }}
           *PR 제목:* ${{ github.event.pull_request.title }}
           *PR 내용:* ${{ github.event.pull_request.body }}
-        fields: repo,message,commit,author,action,eventNam
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
       if: always() # Pick up events even if the job fails or is canceled.
