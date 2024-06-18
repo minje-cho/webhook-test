@@ -2,7 +2,7 @@ name: Slack Notification
  
 on:
   pull_request:
-    branches: [ "master", "develop" ]
+    types: [opened, closed]
  
 jobs:
   build:
