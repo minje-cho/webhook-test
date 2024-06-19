@@ -35,16 +35,6 @@ jobs:
                   "alt_text": "Haunted hotel image"
                 }
               },
-              {
-                "type": "section",
-                "block_id": "section789",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "*Average Rating*\\n1.0"
-                  }
-                ]
-              }
             ]
           }
       env:
