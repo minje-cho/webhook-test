@@ -1,49 +1,26 @@
 on:
   pull_request:
-    types: [opened, closed]
+    types: [opened]
 
 jobs:
   new_push_job:
     runs-on: ubuntu-latest
     name: New push to repo
     steps:
-    - name: Send GitHub trigger payload to Slack Workflow Builder
+    - name: PR 정보를 Slack에 전송
       id: slack
       uses: slackapi/slack-github-action@v1.26.0
       with:
         payload: |
           {
-            "text": "Danny Torrence left a 1 star review for your property.",
+            "text": "새로운 Pull Request가 열렸습니다.",
             "blocks": [
               {
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "Danny Torrence left the following review for your property:"
+                  "text": "*PR 제목:* *${{ github.event.pull_request.title }}* - PR 작성자: ${{ github.event.pull_request.user.login}}\\n\\nPR 내용:\\n${{ github.event.pull_request.body }}"
                 }
-              },
-              {
-                "type": "section",
-                "block_id": "section567",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "<https://example.com|Overlook Hotel> \\n :star: \\n Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
-                },
-                "accessory": {
-                  "type": "image",
-                  "image_url": "https://is5-ssl.mzstatic.com/image/thumb/Purple3/v4/d3/72/5c/d3725c8f-c642-5d69-1904-aa36e4297885/source/256x256bb.jpg",
-                  "alt_text": "Haunted hotel image"
-                }
-              },
-              {
-                "type": "section",
-                "block_id": "section789",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "*Average Rating*\\n1.0"
-                  }
-                ]
               }
             ]
           }
