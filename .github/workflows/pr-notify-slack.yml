@@ -1,19 +1,36 @@
 on:
   pull_request:
-    types: [opened]
+    types: [opened, closed]
 
 jobs:
   new_push_job:
     runs-on: ubuntu-latest
     name: New push to repo
     steps:
-    - name: PR 정보를 Slack에 전송 2
+    - name: Send GitHub trigger payload to Slack Workflow Builder
       id: slack
       uses: slackapi/slack-github-action@v1.26.0
       with:
         payload: |
           {
-            "text": "새로운 Pull Request가 열렸습니다.",
+            "text": "PR 생성!",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "PR 생성되었습니다."
+                }
+              },
+              {
+                "type": "section",
+                "block_id": "section567",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*PR 제목:* *${{ github.event.pull_request.title }}* - PR 작성자: ${{ github.event.pull_request.user.login }}\\n\\nPR 내용:\\n${{ github.event.pull_request.body }}"
+                },
+              },
+            ]
           }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
