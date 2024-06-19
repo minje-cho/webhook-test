@@ -13,10 +13,8 @@ jobs:
       with:
         payload: |
           {
-            "text": {
-              "type": "mrkdwn",
-              "text": "*PR 제목:* *${{ github.event.pull_request.title }}* - PR 작성자: ${{ github.event.pull_request.user.login }}\\n\\nPR 내용:\\n${{ github.event.pull_request.body }}"
-            }
+            "text": "*PR 제목:* *${{ github.event.pull_request.title }}* - PR 작성자: ${{ github.event.pull_request.user.login }}",
+            "text": "PR 내용: ${{ github.event.pull_request.body }}"
           }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
