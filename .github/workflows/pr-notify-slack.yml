@@ -19,7 +19,14 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "*${{ github.event.pull_request.title }}* - ${{ github.event.pull_request.user.login }}\n\nPR 내용:\n${{ github.event.pull_request.body }}"
+                  "text": "*${{ github.event.pull_request.title }}* - ${{ github.event.pull_request.user.login }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "text",
+                  "text": "${{ github.event.pull_request.body }}"
                 }
               }
             ]
