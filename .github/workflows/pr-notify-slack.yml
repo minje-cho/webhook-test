@@ -35,7 +35,7 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*내용:*\n${{ github.event.pull_request.user.body }}"
+                    "text": "*내용:*\n${{ github.event.pull_request.body }}"
                   }
                 ]
               }
