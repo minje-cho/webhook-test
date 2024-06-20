@@ -33,6 +33,18 @@ jobs:
                     "type": "mrkdwn",
                     "text": "*작성자:*\n${{ github.event.pull_request.user.login }}"
                   },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*생성 날짜:*\n${{ steps.prepare_message.outputs.created_at }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*마지막 업데이트:*\n${{ steps.prepare_message.outputs.updated_at }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*링크:*\n<${{ steps.prepare_message.outputs.url }}|PR 확인하기>"
+                  }
                 ]
               }
             ]
