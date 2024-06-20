@@ -19,7 +19,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "새로운 PR이 생성되었습니다:\n*<${{ steps.prepare_message.outputs.url }}|PR #${{ steps.prepare_message.outputs.number }} - ${{ github.event.pull_request.title }}>*"
+                  "text": "새로운 PR이 생성되었습니다:\n*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ steps.prepare_message.outputs.number }} - ${{ github.event.pull_request.title }}>*"
                 }
               },
               {
@@ -35,16 +35,8 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*생성 날짜:*\n${{ steps.prepare_message.outputs.created_at }}"
+                    "text": "*내용:*\n${{ github.event.pull_request.user.body }}"
                   },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*마지막 업데이트:*\n${{ steps.prepare_message.outputs.updated_at }}"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*링크:*\n<${{ steps.prepare_message.outputs.url }}|PR 확인하기>"
-                  }
                 ]
               }
             ]
