@@ -33,10 +33,6 @@ jobs:
                     "type": "mrkdwn",
                     "text": "*작성자:*\n${{ github.event.pull_request.user.login }}"
                   },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*내용:*\n${{ github.event.pull_request.user.body }}"
-                  },
                 ]
               }
             ]
