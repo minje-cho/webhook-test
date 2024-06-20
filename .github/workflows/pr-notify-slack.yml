@@ -12,6 +12,20 @@ jobs:
       uses: slackapi/slack-github-action@v1.26.0
       with:
         payload: |
+on:
+  pull_request:
+    types: [opened, closed]
+
+jobs:
+  new_push_job:
+    runs-on: ubuntu-latest
+    name: New push to repo
+    steps:
+    - name: Send GitHub trigger payload to Slack Workflow Builder
+      id: slack
+      uses: slackapi/slack-github-action@v1.26.0
+      with:
+        payload: |
           {
             "blocks": [
               {
@@ -31,13 +45,20 @@ jobs:
                   {
                     "type": "mrkdwn",
                     "text": "*브랜치:*\n${{ github.head_ref }}"
-                  },
+                  }
                 ]
               },
               {
                 "type": "divider"
               }
             ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        GITHUB_TO_SLACK_MAPPING: |
+          {
+            "minje-cho": "1000gwei",
           }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
