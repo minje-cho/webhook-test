@@ -16,7 +16,7 @@ jobs:
             "text": "새로운 PR이 생성되었습니다.",
             "blocks": [
               {
-                "type: "section",
+                "type": "section",
                 "text": {
                   "type": "mrkdwn",
                   "text": "새로운 PR이 생성되었습니다."
@@ -26,14 +26,21 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "*${{ github.event.pull_request.title }}* - ${{ github.event.pull_request.user.login }}"
+                  "text": "제목 - *${{ github.event.pull_request.title }}*"
                 }
               },
               {
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}"
+                  "text": "작성자 - ${{ github.event.pull_request.user.login }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "링크 - https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}"
                 }
               }
             ]
