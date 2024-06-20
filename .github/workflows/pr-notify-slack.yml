@@ -34,7 +34,7 @@ jobs:
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*리뷰 담당자:*\n${{ join(github.event.pull_request.requested_reviewers[*].login, ', ') }}"
+                    "text": "*리뷰 담당자:*\n<@github_to_slack_mapping[minje-cho]>"
                   }
                 ]
               }
