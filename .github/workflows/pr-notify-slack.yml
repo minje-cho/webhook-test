@@ -13,35 +13,32 @@ jobs:
       with:
         payload: |
           {
-          	"blocks": [
-          		{
-          			"type": "section",
-          			"text": {
-          				"type": "mrkdwn",
-          				"text": "*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}>*"
-          			}
-          		},
-          		{
-          			"type": "section",
-          			"fields": [
-          				{
-          					"type": "mrkdwn",
-          					"text": "*작성자:*\n<@github_to_slack_mapping[${{ github.actor }}]>"
-          				},
-          				{
-          					"type": "mrkdwn",
-          					"text": "*브랜치:*\n${{ github.head_ref }}"
-          				},
-          				{
-          					"type": "mrkdwn",
-          					"text": "*리뷰어:*\n${{ join([ for reviewer in github.event.pull_request.requested_reviewers], ', ') }}"
-          				}
-          			]
-          		},
-          		{
-          			"type": "divider"
-          		}
-          	]
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}>*"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*작성자:*\n<@github_to_slack_mapping[${{ github.actor }}]>"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*브랜치:*\n${{ github.head_ref }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*리뷰 담당자:*\n<@github_to_slack_mapping[minje-cho]>"
+                  }
+                ]
+              }
+            ]
           }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
