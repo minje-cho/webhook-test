@@ -26,7 +26,7 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*작성자:*\n<@env.GITHUB_TO_SLACK_MAPPING[${{ github.actor }}]>"
+                    "text": "*작성자:*\n<@${{ env.GITHUB_TO_SLACK_MAPPING }}[${{ github.actor }}]>"
                   },
                   {
                     "type": "mrkdwn",
