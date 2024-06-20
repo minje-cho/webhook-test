@@ -19,25 +19,8 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "새로운 PR이 생성되었습니다:\n*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}>*"
+                  "text": "*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}> / ${{ github.event.pull_request.user.login }}*"
                 }
-              },
-              {
-                "type": "section",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "*제목:*\n${{ github.event.pull_request.title }}"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*작성자:*\n${{ github.event.pull_request.user.login }}"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*내용:*\n${{ github.event.pull_request.body }}"
-                  }
-                ]
               }
             ]
           }
