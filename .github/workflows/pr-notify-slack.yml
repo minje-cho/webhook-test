@@ -26,7 +26,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "<${{ steps.prepare_message.outputs.url }}|PR 확인하기>"
+                  "text": "(https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }})[바로가기]"
                 }
               }
             ]
