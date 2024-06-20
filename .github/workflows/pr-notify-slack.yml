@@ -26,7 +26,7 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*작성자:*\n<@github_to_slack_mapping[${{ github.actor }}]>"
+                    "text": "*작성자:*\n@1000gwei"
                   },
                   {
                     "type": "mrkdwn",
@@ -37,7 +37,10 @@ jobs:
                     "text": "*리뷰 담당자:*\n<@github_to_slack_mapping[minje-cho]>"
                   }
                 ]
-              }
+              },
+          		{
+          			"type": "divider"
+          		},
             ]
           }
       env:
