@@ -25,7 +25,7 @@ jobs:
           			"type": "section",
           			"text": {
           				"type": "mrkdwn",
-          				"text": "*작성자:*\n${{ github.event.pull_request.user.login }}\n*브랜치:*\n${{ github.ref }}"
+          				"text": "*작성자:*\n${{ github.event.pull_request.user.login }}\n*브랜치:*\n${{ github.head_ref }}"
           			}
           		}
           	]
