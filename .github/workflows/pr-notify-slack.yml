@@ -31,7 +31,11 @@ jobs:
                   {
                     "type": "mrkdwn",
                     "text": "*브랜치:*\n${{ github.head_ref }}"
-                  }
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*리뷰어:*\n${{ join([ '<@${{ fromJSON(env.GITHUB_TO_SLACK_MAPPING)[reviewer] }}>' for reviewer in github.event.pull_request.requested_reviewers], ', ') }}"
+                  },
                 ]
               },
               {
