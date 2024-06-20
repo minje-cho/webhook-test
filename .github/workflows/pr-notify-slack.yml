@@ -26,7 +26,7 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*작성자:*\n<@github_to_slack_mapping[${{ github.actor }}]>"
+                    "text": "*작성자:*\n<@${{ github.actor }}>"
                   },
                   {
                     "type": "mrkdwn",
@@ -37,13 +37,12 @@ jobs:
                     "text": "*리뷰 담당자:*\n<@github_to_slack_mapping[minje-cho]>"
                   }
                 ]
+              },
+              {
+                "type": "divider"
               }
             ]
           }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-        GITHUB_TO_SLACK_MAPPING: |
-          {
-            "minje-cho": "1000gwei",
-          }
