@@ -12,14 +12,14 @@ jobs:
       uses: slackapi/slack-github-action@v1.26.0
       with:
         payload: |
-            {
+          {
             "text": "새로운 PR이 생성되었습니다.",
             "blocks": [
               {
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "새로운 PR이 생성되었습니다:\n*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ steps.prepare_message.outputs.number }} - ${{ github.event.pull_request.title }}>*"
+                  "text": "새로운 PR이 생성되었습니다:\n*<${{ steps.prepare_message.outputs.url }}|PR #${{ steps.prepare_message.outputs.number }} - ${{ github.event.pull_request.title }}>*"
                 }
               },
               {
