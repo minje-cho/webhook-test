@@ -13,22 +13,22 @@ jobs:
       with:
         payload: |
           {
-            "blocks": [
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}>*"
-                    }
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "*작성자:*\n${{ github.event.pull_request.user.login }}\n*브랜치:*\n${{ github.ref }}"
-                    },
-                }
-            ]
+          	"blocks": [
+          		{
+          			"type": "section",
+          			"text": {
+          				"type": "mrkdwn",
+          				"text": "*<https://github.com/minje-cho/webhook-test/pull/${{ github.event.pull_request.number }}|PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}>*"
+          			}
+          		},
+          		{
+          			"type": "section",
+          			"text": {
+          				"type": "mrkdwn",
+          				"text": "*작성자:*\n${{ github.event.pull_request.user.login }}\n*브랜치:*\n${{ github.ref }}"
+          			}
+          		}
+          	]
           }
 
       env:
