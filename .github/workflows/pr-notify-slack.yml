@@ -31,7 +31,7 @@ jobs:
           				{
           					"type": "mrkdwn",
           					"text": "*브랜치:*\n${{ github.head_ref }}"
-          				},
+          				}
           			]
           		},
           		{
