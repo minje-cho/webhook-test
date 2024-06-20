@@ -23,10 +23,20 @@ jobs:
           		},
           		{
           			"type": "section",
-          			"text": {
-          				"type": "mrkdwn",
-          				"text": "*작성자:*\n${{ github.event.pull_request.user.login }}\n*브랜치:*\n${{ github.head_ref }}"
-          			}
+             			"fields": [
+            				{
+            					"type": "mrkdwn",
+            					"text": "*작성자:*\n${{ github.actor }}"
+            				},
+            				{
+            					"type": "mrkdwn",
+            					"text": "*브랜치:*\n${{ github.head_ref }}"
+            				},
+            				{
+            					"type": "mrkdwn",
+            					"text": "*리뷰어:*\n${{ github.reviewer }}"
+            				}
+            			]
           		}
           	]
           }
